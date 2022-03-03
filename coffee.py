@@ -70,6 +70,49 @@ while flag:
 
 
 
+    # ask = input("What would you like? (espresso/latte/cappuccino): ")
+    # if ask != "report" and ask != "off":
+    #     order()
+    # elif ask == "off":
+    #     flag = False
+    # elif ask == "report":
+    #     print(res)
+
+
+    def order():
+
+        print("please insert coins")
+        quartar = int(input("how many quartars? "))
+        calc = quartar * 0.25
+
+        if ask == "espresso" and calc >= 2.5:
+            if calc >= 2.5:
+                change = calc - 2.5
+                print(f"here is {change} in change")
+                espresso()
+            elif calc < 2.5:
+                print("sorry that's is not enough money")
+
+            # espresso()
+        elif ask == "latte" and calc >= 2.5:
+            if calc >= 2.5:
+                change = calc - 2.5
+                print(f"here is {change}")
+                latte()
+            elif calc < 2.5:
+                print("sorry that is not enough money")
+            # latte()
+        elif ask == "cappuccino":
+            if calc >= 2.5:
+                change = calc - 2.5
+                print(f"here is {change}")
+                cappuccino()
+        elif calc < 2.5:
+            print("sorry that is not enough money")
+            # cappuccino()
+
+
+
     ask = input("What would you like? (espresso/latte/cappuccino): ")
     if ask != "report" and ask != "off":
         order()
@@ -77,34 +120,6 @@ while flag:
         flag = False
     elif ask == "report":
         print(res)
-    def order():
-        print("please insert coins")
-        quartar = int(input("how many quartars? "))
-        calc = quartar * 0.25
-
-
-        if ask == "espresso" and calc >= 2.5:
-            if calc >= 2.5:
-                change = calc - 2.5
-                print(f"here is {change} in change")
-            elif calc < 2.5:
-                print("sorry that's is not enough money")
-
-            espresso()
-        elif ask == "latte" and calc >= 2.5:
-            if calc >= 2.5:
-                change = calc - 2.5
-                print(f"here is {change}")
-            elif calc < 2.5:
-                print("sorry that is not enough money")
-            latte()
-        elif ask == "cappuccino":
-            if calc >= 2.5:
-                change = calc - 2.5
-                print(f"here is {change}")
-        elif calc < 2.5:
-            print("sorry that is not enough money")
-            cappuccino()
 
 
 
