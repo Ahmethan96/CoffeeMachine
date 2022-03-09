@@ -1,3 +1,6 @@
+## better solution 
+
+
 MENU = {
     "espresso": {
         "ingredients": {
