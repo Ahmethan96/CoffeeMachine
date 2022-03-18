@@ -125,31 +125,18 @@ espresso_in = espresso["ingredients"]
 latte_in = latte["ingredients"]
 cappuccino_in = cappuccino["ingredients"]
 ########################################
-
 print(espresso_in["water"])
 print(resources["water"])
-flag = True
-while flag:
+flag = False
+while ask_user() != flag:
     ask = input("What would you like? (espresso/latte/cappuccino): ")
-    money = int(input("insert coins: "))
-    total = money * 0.25
-
-
-    # def para(money):
-    #     total = money * 0.25
-    #     if total == 2.5:
-    #         ask_user(ask)
-    #     elif total > 2.5:
-    #         total = total - 2.5
-    #         print(f"here is your change {total}")
-    #         ask_user(ask)
-    #     else:
-    #         total = 2.5 - total
-    #         print(f"sorry you have to entre more {total}")
-    #         para(money)
     def ask_user():
         if ask == "espresso":
+            money = int(input("insert coins: "))
+            total = money * 0.25
             if total >= 2.5:
+                change = total - 2.5
+                print(f"here is you change {change}")
                 if resources["water"] >= espresso_in["water"] and resources["coffee"] > espresso_in["coffee"] :
                     resources["water"] = resources["water"] -espresso_in["water"]
                     resources["coffee"] = resources["coffee"] - espresso_in["coffee"]
@@ -160,9 +147,12 @@ while flag:
             else:
                 print("Sorry that is not enough money ")
 
-
         elif ask == "latte":
+            money = int(input("insert coins: "))
+            total = money * 0.25
             if total >= 2.5:
+                change = total - 2.5
+                print(f"here is you change {change}")
                 if resources["water"] >= latte_in["water"] and resources["coffee"] > latte_in["coffee"] and resources["milk"] >= latte_in["milk"] :
                     resources["water"] = resources["water"] - latte_in["water"]
                     resources["coffee"] = resources["coffee"] - latte_in["coffee"]
@@ -175,7 +165,11 @@ while flag:
             else:
                 print("Sorry that is not enough money ")
         elif ask == "cappuccino":
+            money = int(input("insert coins: "))
+            total = money * 0.25
             if total >= 2.5:
+                change = total - 2.5
+                print(f"here is you change {change}")
                 if  resources["water"] >= cappuccino_in["water"] and resources["coffee"] > cappuccino_in["coffee"] and resources["milk"] >= cappuccino_in["milk"] :
                     resources["water"] = resources["water"] - cappuccino_in["water"]
                     resources["coffee"] = resources["coffee"] - cappuccino_in["coffee"]
@@ -187,10 +181,12 @@ while flag:
                     print("you do not have enough ingredients")
             else:
                 print("Sorry that is not enough money ")
-        elif ask == "quit":
-            flag = False
-        return resources
+        elif ask == "report":
+            print(resources)
 
-    ask_user()
+        elif ask == "quit":
+            flag == True
+            return flag
 
 print(ask_user())
+
