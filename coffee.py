@@ -113,3 +113,84 @@ while flag:
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+from Drinks import MENU
+from Drinks import resources
+
+dic = {}
+espresso = MENU["espresso"]
+latte = MENU["latte"]
+cappuccino = MENU["cappuccino"]
+##############################
+espresso_in = espresso["ingredients"]
+latte_in = latte["ingredients"]
+cappuccino_in = cappuccino["ingredients"]
+########################################
+
+print(espresso_in["water"])
+print(resources["water"])
+flag = True
+while flag:
+    ask = input("What would you like? (espresso/latte/cappuccino): ")
+    money = int(input("insert coins: "))
+    total = money * 0.25
+
+
+    # def para(money):
+    #     total = money * 0.25
+    #     if total == 2.5:
+    #         ask_user(ask)
+    #     elif total > 2.5:
+    #         total = total - 2.5
+    #         print(f"here is your change {total}")
+    #         ask_user(ask)
+    #     else:
+    #         total = 2.5 - total
+    #         print(f"sorry you have to entre more {total}")
+    #         para(money)
+    def ask_user():
+        if ask == "espresso":
+            if total >= 2.5:
+                if resources["water"] >= espresso_in["water"] and resources["coffee"] > espresso_in["coffee"] :
+                    resources["water"] = resources["water"] -espresso_in["water"]
+                    resources["coffee"] = resources["coffee"] - espresso_in["coffee"]
+                    print(f"the rest amount of water is {resources['water']}")
+                    print(f"the rest amount of coffee is {resources['coffee']}")
+                else:
+                    print("you do not have enough ingredients")
+            else:
+                print("Sorry that is not enough money ")
+
+
+        elif ask == "latte":
+            if total >= 2.5:
+                if resources["water"] >= latte_in["water"] and resources["coffee"] > latte_in["coffee"] and resources["milk"] >= latte_in["milk"] :
+                    resources["water"] = resources["water"] - latte_in["water"]
+                    resources["coffee"] = resources["coffee"] - latte_in["coffee"]
+                    resources["milk"] = resources["milk"] - latte_in["milk"]
+                    print(f"the rest amount of water is {resources['water']}")
+                    print(f"the rest amount of coffee is {resources['coffee']}")
+                    print(f"the rest amount of milk is {resources['milk']}")
+                else:
+                    print("you do not have enough ingredients")
+            else:
+                print("Sorry that is not enough money ")
+        elif ask == "cappuccino":
+            if total >= 2.5:
+                if  resources["water"] >= cappuccino_in["water"] and resources["coffee"] > cappuccino_in["coffee"] and resources["milk"] >= cappuccino_in["milk"] :
+                    resources["water"] = resources["water"] - cappuccino_in["water"]
+                    resources["coffee"] = resources["coffee"] - cappuccino_in["coffee"]
+                    resources["milk"] = resources["milk"] - cappuccino_in["milk"]
+                    print(f"the rest amount of water is {resources['water']}")
+                    print(f"the rest amount of coffee is {resources['coffee']}")
+                    print(f"the rest amount of milk is {resources['milk']}")
+                else:
+                    print("you do not have enough ingredients")
+            else:
+                print("Sorry that is not enough money ")
+        elif ask == "quit":
+            flag = False
+        return resources
+
+    ask_user()
+
+print(ask_user())
