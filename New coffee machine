@@ -1,0 +1,85 @@
+from ibo import MENU, resources
+resources["money"] = 0
+def payment(cost, type):
+    pay = int(input("how many quarters: ")) * 0.25
+    if type == "espresso" and cost <= pay:
+            change = cost - pay
+            resources["money"] += cost
+            print("here we go you coffee")
+            print(f"your change is {abs(change)}")
+            return True
+    elif type == "latte" and cost <= pay:
+            change = cost - pay
+            print("here we go you coffee")
+            print(f"your change is {abs(change)}")
+            return True
+    elif type == "cappuccino" and cost <= pay:
+            change = cost - pay
+            print("here we go you coffee")
+            print(f"your change is {abs(change)}")
+            return True
+    else:
+        print("sorry not enough money")
+
+def ask():
+    user = input("What would you like? (espresso/latte/cappuccino): ")
+    return user
+
+def report(water, milk, coffee, money):
+    print(f"water {water}, milk {milk}, coffee {coffee} and money {money}")
+
+def matter(water,milk,coffee):
+
+    if resources["water"] >= water and resources["milk"] >= milk and resources["coffee"] >= coffee:
+        s = payment(price, x)
+        if s == True:
+            resources["water"] = resources["water"] - water
+            resources["milk"]= resources["milk"] - milk
+            resources["coffee"] = resources["coffee"] - coffee
+
+        print(f"the remaining water is {resources['water']}, milk {resources['milk']}, coffee {resources['coffee']}")
+        return f"the remaining water is {resources['water']}, milk {resources['milk']}, coffee {resources['coffee']}"
+    elif resources["water"] < water:
+        print("no enough water")
+    elif resources["milk"] < milk:
+        print("no enough milk")
+    elif resources["coffee"] < coffee:
+        print("no enough coffee")
+
+flag = True
+while flag:
+    x = ask()
+    if x == "espresso":
+        water = 50
+        milk = 0
+        coffee = 18
+        drink = x
+        price = 1.5
+        matter(water, milk, coffee)
+
+    elif x == "latte":
+        water = 200
+        milk = 150
+        coffee = 24
+        price = 2.5
+        drink = x
+        matter(water,milk,coffee)
+
+    elif x == "cappuccino":
+        water = 250
+        milk = 100
+        coffee = 24
+        price = 3
+        matter(water,milk,coffee)
+
+    elif x == "report":
+        water = resources["water"]
+        milk = resources["milk"]
+        coffee = resources["coffee"]
+        resources["money"] += 0
+        money = resources["money"]
+        report(water, milk, coffee,money)
+
+    elif x == "off":
+        flag = False
+
