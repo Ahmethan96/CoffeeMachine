@@ -1,0 +1,111 @@
+MENU = {
+    "espresso": {
+        "ingredients": {
+            "water": 50,
+            "coffee": 18,
+        },
+        "cost": 1.5,
+    },
+    "latte": {
+        "ingredients": {
+            "water": 200,
+            "milk": 150,
+            "coffee": 24,
+        },
+        "cost": 2.5,
+    },
+    "cappuccino": {
+        "ingredients": {
+            "water": 250,
+            "milk": 100,
+            "coffee": 24,
+        },
+        "cost": 3.0,
+    }
+}
+
+ing = {"water": 300, "milk": 200, "coffee": 100, "money": 0}
+
+def ask():
+    ask_user = input("what would you like? (espresso/latte/cappuccino): ")
+    return ask_user
+
+
+def report():
+    return ing
+
+for i in MENU:
+    print(i)
+
+# print(MENU["espresso"]["ingredients"]["coffee"])
+
+def transiction(drink):
+    if drink == "espresso":
+        x = float(input("please entre 1.5 dollars "))
+        return x
+    elif drink == "latte":
+        x = float(input("please entre 2.5 dollars "))
+        return x
+    elif drink == "cappuccino":
+        x = float(input("please entre 2 dollars "))
+        return x
+
+
+def check_resource(drink):
+    if drink == "espresso":
+        if transiction(drink) >= 1.5:
+            if ing["water"] >= MENU["espresso"]["ingredients"]["water"]:
+                if ing["coffee"] >= MENU["espresso"]["ingredients"]["coffee"]:
+                    print("enjoy your espresso ")
+                    ing["water"] = ing["water"] - MENU["espresso"]["ingredients"]["water"]
+                    ing["coffee"] = ing["coffee"] - MENU["espresso"]["ingredients"]["coffee"]
+                else:
+                    print("no enough coffee")
+            else:
+                print("no enough water")
+        else:
+            print("please insert enough amount of money")
+    elif drink == "latte":
+        if transiction(drink) >= 2.5:
+            if ing["water"] >= MENU["latte"]["ingredients"]['water']:
+                if ing["coffee"] >= MENU["latte"]["ingredients"]["coffee"]:
+                    if ing["milk"] >= MENU["latte"]["ingredients"]["milk"]:
+                            print("enjoy your latte")
+                            ing["water"] = ing["water"] - MENU["latte"]["ingredients"]["water"]
+                            ing["coffee"] = ing["coffee"] - MENU["latte"]["ingredients"]["coffee"]
+                            ing["milk"] = ing["milk"] - MENU["latte"]["ingredients"]["milk"]
+                    else:
+                            print("no enough milk")
+                else:
+                        print("no enough coffee")
+            else:
+                    print("no enough water")
+        else:
+            print("please insert enough amount of money")
+    elif drink == "cappuccino":
+        if transiction(drink) >= 2:
+            if ing["water"] >= MENU["cappuccino"]["ingredients"]['water']:
+                if ing["coffee"] >= MENU["cappuccino"]["ingredients"]["coffee"]:
+                    if ing["milk"] >= MENU["cappuccino"]["ingredients"]["milk"]:
+                        print("enjoy your latte")
+                        ing["water"] = ing["water"] - MENU["cappuccino"]["ingredients"]["water"]
+                        ing["coffee"] = ing["coffee"] - MENU["cappuccino"]["ingredients"]["coffee"]
+                        ing["milk"] = ing["milk"] - MENU["cappuccino"]["ingredients"]["milk"]
+                    else:
+                        print("no enough milk")
+                else:
+                    print("no enough coffee")
+            else:
+                print("no enough water")
+        else:
+            print("please insert enough amount of money")
+
+print(ing)
+check_resource(ask())
+print(ing)
+check_resource(ask())
+print(ing)
+check_resource(ask())
+print(ing)
+check_resource(ask())
+print(ing)
