@@ -109,3 +109,103 @@ check_resource(ask())
 print(ing)
 check_resource(ask())
 print(ing)
+
+
+##########################################################################################################################################################
+##########################################################################################################################################################
+
+from menu import MENU
+from menu import resources
+
+def question():
+
+    if ask == "espresso":
+        resources["water"] = resources["water"] - MENU["espresso"]["ingredients"]["water"]
+        resources["coffee"] = resources["coffee"] - MENU["espresso"]["ingredients"]["coffee"]
+        print(f"the left are as the following {resources}")
+
+
+    elif ask == "latte":
+        resources["water"] = resources["water"] - MENU["latte"]["ingredients"]["water"]
+        resources["milk"] = resources["milk"] - MENU["latte"]["ingredients"]["milk"]
+        resources["coffee"] = resources["coffee"] - MENU["latte"]["ingredients"]["coffee"]
+        print(f"the left are as the following {resources}")
+
+
+    elif ask == "cappuccino":
+        resources["water"] = resources["water"] - MENU["cappuccino"]["ingredients"]["water"]
+        resources["milk"] = resources["milk"] - MENU["cappuccino"]["ingredients"]["milk"]
+        resources["coffee"] = resources["coffee"] - MENU["cappuccino"]["ingredients"]["coffee"]
+        print(f"the left are as the following {resources}")
+
+
+def check_resources():
+        if ask == "off":
+            return False
+        if ask == "report":
+         print(resources)
+         return resources
+
+        if ask == "espresso":
+            if resources["water"] < 50:
+                print(resources["water"])
+                print("no enough water!")
+            if resources["coffee"] < 18:
+                print("no enough coffee!")
+            if resources["water"] >= 50 and resources["coffee"] >= 18:
+                process_coin()
+
+        if ask == "latte":
+            if resources["water"] < 200:
+                print("no enough water!")
+            if resources["milk"] < 150:
+                print("no enough milk!")
+            if resources["coffee"] < 24:
+                print("no enough coffee!")
+            if resources["water"] >= 200 and resources["coffee"] >= 24 and resources["milk"] >= 150:
+                process_coin()
+
+        if ask == "cappuccino":
+            if resources["water"] < 250:
+                print("no enough water!")
+            if resources["milk"] < 100:
+                print("no enough milk!")
+            if resources["coffee"] < 24:
+                print("no enough coffee")
+            if resources["water"] >= 250 and resources["coffee"] >= 24 and resources["milk"] >= 100:
+                process_coin()
+
+def process_coin():
+    money = int(input("please insert coin"))
+
+    if ask == "espresso":
+        if money >= 1.5:
+            question()
+            print(f"your change is {money - 1.5}")
+            print("here is your espresso enjoy it!")
+        else:
+            print("please insert the right amount")
+
+    if ask == "latte":
+        if money >= 2.5:
+            question()
+            print(f"your change is {money - 2.5}")
+            print("here is your latte enjoy it!")
+        else:
+            print("please insert the right amount")
+
+    if ask == "cappuccino":
+        if money >= 3:
+            question()
+            print(f"your change is {money - 3}")
+            print("here is your cappuccino enjoy it!")
+        else:
+            print("please insert the right amount")
+
+flag1 = True
+while flag1:
+
+    ask = input(" What would you like? (espresso/latte/cappuccino): ")
+    check_resources()
+    if ask == "off":
+        flag1 = False
