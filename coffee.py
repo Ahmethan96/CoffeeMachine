@@ -190,3 +190,50 @@ while ask_user() != flag:
 
 print(ask_user())
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+updated solution 
+
+
+from game_data import MENU
+inventory = {"water": 300, "milk": 200, "coffee": 100}
+
+def check_recources(drink):
+    content = MENU[drink]['ingredients']
+    for i in content:
+        if inventory[i] > content[i]:
+            inventory[i] = inventory[i] - content[i]
+            return True
+        elif inventory[i] < content[i]:
+            print(f"insufficient {i}\n")
+            return False
+    print(inventory)
+
+def process_coin(drink):
+    price = MENU[drink]['cost']
+    flag = True
+    while flag:
+        payment = float(input("the cost is {}: ".format(price)))
+        if payment < price:
+            print("you paid {}, the cost is {}. please entre the due amount".format(payment, price))
+        elif payment == price:
+            print("Thank you, enjoy your drink!")
+            flag = False
+        elif payment > price:
+            exchange = payment - price
+            print("Thank you, enjoy your drink and get your exchange {}".format(exchange))
+            flag = False
+
+flag = True
+while flag:
+    ask = input("What would you like? (espresso/latte/cappuccino): ")
+    print(inventory)
+
+    if ask == "report":
+        print(inventory)
+    elif ask == "off":
+        flag = False
+    else:
+        if check_recources(ask) == True:
+            process_coin(ask)
+
+
