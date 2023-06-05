@@ -1,70 +1,53 @@
 from menu import Menu, MenuItem
 from coffee_maker import CoffeeMaker
 from money_machine import MoneyMachine
-
-ask_user = input("What would you like? (espresso/latte/cappuccino/): ")
-
-# print(Menu().menu[0].ingredients["water"])
-# print(Menu().find_drink(ask_user).ingredients)
-# print(Menu().menu[Menu().find_drink(ask_user)])
+#
+# for i in Menu().menu:
+#     print(i.ingredients)
+#
+# print(Menu().find_drink(ask).ingredients)
+# print(chosen_drink["water"])
+# print(CoffeeMaker().resources)
 # for i in CoffeeMaker().resources:
-#     print(i, CoffeeMaker().resources[i])
+#     print("this is {} chosen drink".format(chosen_drink[i]))
+#     print("this is {} inventory".format(inventory[i]))
 
-
-# print(CoffeeMaker().resources["water"])
+# flag = True
+# inventory = CoffeeMaker().resources
+# while flag:
 #
-# for i in CoffeeMaker().resources:
-#     print(i)
+#     ask = input("What would you like? (espresso/latte/cappuccino/): ")
+#     chosen_drink = Menu().find_drink(ask).ingredients
 #
-# print(f" this is {Menu().find_drink(ask_user).ingredients}")
-
-def subtract():
-    for i in CoffeeMaker().resources:
-        print(CoffeeMaker().resources[i])
-        CoffeeMaker().resources[i] = CoffeeMaker().resources[i] - Menu().find_drink(ask_user).ingredients[i]
-
-    return CoffeeMaker().resources
-
-
-def check_resource():
-    for j in Menu().menu:
-        print(j.name)
-        if j.name == ask_user:
-            for i in CoffeeMaker().resources:
-                if CoffeeMaker().resources[i] > Menu().find_drink(ask_user).ingredients[i]:
-                    print("you have enough amount of {} {}".format(i, Menu().find_drink(ask_user).ingredients[i]))
-                    print(subtract())
-                elif CoffeeMaker().resources[i] < Menu().find_drink(ask_user).ingredients[i]:
-                    print(
-                        "you DO NOT have enough amount of {} {}".format(i, Menu().find_drink(ask_user).ingredients[i]))
-
-
-for i in range(len(Menu().menu)):
-    if Menu().menu[i].name == ask_user:
-        check_resource()
-
-
-# drink = MenuItem(ask_user, 200, 51, 24, 1.5)
-# print(drink.name)
-# print(drink.ingredients)
-# print(drink.cost)
-
-# print(Menu().menu[0].name)
-# print(Menu().menu[0].ingredients)
+#     def check_source():
+#         for i in CoffeeMaker().resources:
+#             if inventory[i] >= chosen_drink[i]:
+#                 # print("enjoy your drink! ")
+#                 inventory[i] = inventory[i] - chosen_drink[i]
 #
-# for j in range(len(Menu().menu)):
-#     print(Menu().menu[j].name)
-#     if Menu().menu[j].name == ask_user:
-#         print("good job, you choose {}".format(ask_user))
+#             elif inventory[i] < chosen_drink[i]:
+#                 print("no enough {}".format(i))
+#                 print("game over")
 #
 #
-# for i in Menu().menu[0].ingredients:
-#     print(i)
 #
-# print(Menu().get_items())
-# print(Menu().find_drink(ask_user).name)
-# print(Menu().menu[1].name)
-# print(Menu().find_drink(ask_user).name)
+#     print(check_source())
+#     print(inventory)
+#
 
-# for x in Menu().menu:
-#     print(x.name)
+
+flag = True
+while flag:
+
+    ask = input("What would you like? (espresso/latte/cappuccino/): ")
+    order = Menu().find_drink(ask)
+    check = CoffeeMaker().is_resource_sufficient(order)
+    # print(order.name)
+    # print(order.cost)
+    # print(order.ingredients)
+    # print(order.ingredients)
+
+    if check == True:
+        CoffeeMaker().make_coffee(order)
+        print(CoffeeMaker().resources)
+
